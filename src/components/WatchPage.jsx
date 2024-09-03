@@ -10,7 +10,7 @@ const WatchPage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(closeMenu());
-  }, []);
+  }, [dispatch]);
   return (
     <div className="p-6">
       <iframe
