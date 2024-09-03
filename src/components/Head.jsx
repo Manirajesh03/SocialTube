@@ -52,7 +52,7 @@ const Head = () => {
           className="h-12 mx-5"
         />
       </div>
-      <div className="col-span-10 px-10 xsm:max-md:hidden">
+      <div className="col-span-10 px-10 xsm:max-md:hidden mt-1">
         <div className="flex">
           <input
             type="text"
