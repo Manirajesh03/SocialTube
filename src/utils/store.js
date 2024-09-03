@@ -1,5 +1,5 @@
 import { createStore } from "redux";
-import { IS_MENU_OPEN, isMenuOpen } from "./actions";
+import { CLOSE_MENU, IS_MENU_OPEN, isMenuOpen } from "./actions";
 
 const initialState = {
   isMenuOpen: true,
@@ -11,6 +11,10 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isMenuOpen: state.isMenuOpen ? false : true,
+      };
+    case CLOSE_MENU:
+      return {
+        isMenuOpen: false,
       };
     default:
       return state;

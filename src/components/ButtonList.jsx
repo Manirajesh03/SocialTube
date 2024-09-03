@@ -16,7 +16,6 @@ const ButtonList = () => {
     "Tamil Cinema",
     "T-Series",
     "Drama",
-    "Comedy",
   ];
   return (
     <div className="my-5 mx-2 flex">
