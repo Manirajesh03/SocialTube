@@ -1,5 +1,5 @@
 import { createStore } from "redux";
-import { CLOSE_MENU, IS_MENU_OPEN, isMenuOpen } from "./actions";
+import { CLOSE_MENU, IS_MENU_OPEN } from "./actions";
 
 const initialState = {
   isMenuOpen: true,
