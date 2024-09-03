@@ -8,8 +8,8 @@ const Head = () => {
     dispatch(isMenuOpen());
   };
   return (
-    <div className="grid grid-flow-col px-4 py-2 shadow-md">
-      <div className="flex items-center col-span-1 mx-2 mr-20">
+    <div className="grid grid-flow-col px-4 py-2 shadow-md xsm:max-md:justify-between">
+      <div className="flex items-center col-span-1 mx-2 mr-20 xsm:max-md:justify-between">
         <img
           src="https://cdn.iconscout.com/icon/free/png-256/free-hamburger-menu-icon-download-in-svg-png-gif-file-formats--crispy-user-interface-pack-icons-462145.png?f=webp&w=256"
           alt="menu"
@@ -23,7 +23,7 @@ const Head = () => {
           className="h-12 mx-5"
         />
       </div>
-      <div className="col-span-10 px-10 flex">
+      <div className="col-span-10 px-10 flex xsm:max-md:hidden">
         <input
           type="text"
           className="w-3/5 border border-gray-300 py-1 rounded-l-full px-4"

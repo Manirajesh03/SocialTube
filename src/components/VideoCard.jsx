@@ -6,7 +6,7 @@ const VideoCard = ({ info }) => {
   const { channelTitle, title, thumbnails, publishedAt } = snippet;
   const { viewCount } = statistics;
   return (
-    <div className="w-[340px] mx-2 my-5 shadow-md rounded-xl">
+    <div className="w-[340px] mx-2 my-5 shadow-md rounded-xl xsm:max-md:w-full">
       <img
         src={thumbnails.medium.url}
         alt="thumbnail"

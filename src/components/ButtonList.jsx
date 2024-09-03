@@ -18,7 +18,7 @@ const ButtonList = () => {
     "Drama",
   ];
   return (
-    <div className="my-5 mx-2 flex">
+    <div className="my-5 mx-2 flex xsm:max-md:hidden">
       {data.map((item, id) => (
         <Button name={item} key={id} />
       ))}

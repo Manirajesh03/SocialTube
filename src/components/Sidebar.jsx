@@ -7,7 +7,7 @@ const Sidebar = () => {
   return (
     <>
       {isMenuOpen && (
-        <div className="p-5 shadow-sm col-span-3 w-[200px]">
+        <div className="p-5 shadow-sm col-span-3 w-[200px] xsm:max-md:hidden">
           <h1 className="font-bold">Subscriptions</h1>
           <ul>
             <Link to="/">

@@ -22,7 +22,7 @@ const WatchPage = () => {
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerpolicy="strict-origin-when-cross-origin"
         allowfullscreen
-        className="rounded-lg"
+        className="rounded-lg xsm:max-md:w-full xsm:max-md:h-80"
       ></iframe>
     </div>
   );
