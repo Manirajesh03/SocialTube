@@ -17,9 +17,10 @@ const Head = () => {
           onClick={toggleMenuHandler}
         />
         <img
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/YouTube_2024.svg/250px-YouTube_2024.svg.png"
+          // src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/YouTube_2024.svg/250px-YouTube_2024.svg.png"
+          src={require("../assets/logo.png")}
           alt="youtube-logo"
-          className="h-5 mx-5"
+          className="h-12 mx-5"
         />
       </div>
       <div className="col-span-10 px-10 flex">
