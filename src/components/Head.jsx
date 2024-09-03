@@ -16,6 +16,7 @@ const Head = () => {
   };
 
   const getSearchSuggestions = async () => {
+    console.log("Calling Search Api");
     const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
     const res = await data.json();
     console.log(res[1]);
@@ -34,7 +35,7 @@ const Head = () => {
     return () => {
       clearTimeout(timer);
     };
-  }, [searchQuery]);
+  }, [searchQuery, showSuggestions]);
 
   return (
     <div className="grid grid-flow-col px-4 py-2 shadow-md xsm:max-md:justify-between">
