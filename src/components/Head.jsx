@@ -1,41 +1,50 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { isMenuOpen } from "../utils/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { isMenuOpen, searchData } from "../utils/actions";
 import { YOUTUBE_SEARCH_API } from "../utils/constants";
 
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
-
-  console.log("🚀 ~ Head ~ searchQuery:", searchQuery);
-
+  const cacheSearchedData = useSelector((store) => store.initialSearchData);
   const dispatch = useDispatch();
+
   const toggleMenuHandler = () => {
     dispatch(isMenuOpen());
   };
 
   const getSearchSuggestions = async () => {
-    console.log("Calling Search Api");
-    const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
-    const res = await data.json();
-    console.log(res[1]);
-    setSuggestions(res[1]);
-    setShowSuggestions(true);
+    console.log("Calling Search API");
+    try {
+      const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
+      const res = await data.json();
+      console.log(res[1]);
+      setSuggestions(res[1]);
+      dispatch(searchData({ [searchQuery]: res[1] }));
+      setShowSuggestions(true);
+    } catch (error) {
+      console.error("Error fetching search suggestions:", error);
+    }
   };
 
   useEffect(() => {
-    //API Call
+    // API Call
     let timer;
     if (searchQuery) {
-      timer = setTimeout(() => getSearchSuggestions(), 200);
+      if (cacheSearchedData[searchQuery]) {
+        setSuggestions(cacheSearchedData[searchQuery]);
+        setShowSuggestions(true);
+      } else {
+        timer = setTimeout(() => getSearchSuggestions(), 200);
+      }
     } else {
       setShowSuggestions(false);
     }
     return () => {
       clearTimeout(timer);
     };
-  }, [searchQuery, showSuggestions]);
+  }, [searchQuery]);
 
   return (
     <div className="grid grid-flow-col px-4 py-2 shadow-md xsm:max-md:justify-between">
@@ -47,7 +56,6 @@ const Head = () => {
           onClick={toggleMenuHandler}
         />
         <img
-          // src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/YouTube_2024.svg/250px-YouTube_2024.svg.png"
           src={require("../assets/logo.png")}
           alt="youtube-logo"
           className="h-12 mx-5"
@@ -66,7 +74,6 @@ const Head = () => {
           />
           <button className="border border-gray-300 py-2 px-6 rounded-r-full bg-gray-100">
             <img
-              // src="https://cdn3.iconfinder.com/data/icons/feather-5/24/search-512.png"
               src="https://cdn-icons-png.flaticon.com/512/54/54481.png"
               alt="search-icon"
               className="w-5"
@@ -78,7 +85,7 @@ const Head = () => {
           <div className="fixed bg-white w-[34.5%] shadow-lg rounded-lg p-4">
             <ul>
               {suggestions.map((item, key) => (
-                <li className="py-1 flex items-center" key={key}>
+                <li className="py-1 flex items-center cursor-pointer" key={key}>
                   <img
                     src="https://cdn-icons-png.flaticon.com/512/54/54481.png"
                     alt="search-icon"
