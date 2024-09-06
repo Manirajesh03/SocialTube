@@ -7,6 +7,7 @@ import CommentsContainer from "./CommentsContainer";
 const WatchPage = () => {
   const [params] = useSearchParams();
   console.log("🚀 ~ WatchPage ~ params:", params.get("v"));
+  const data = params.get("v");
   console.log("loading");
   const dispatch = useDispatch();
   useEffect(() => {
@@ -20,10 +21,10 @@ const WatchPage = () => {
           height="500"
           src={"https://www.youtube.com/embed/" + params.get("v")}
           title="YouTube video player"
-          frameborder="0"
+          frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
           className="rounded-lg xsm:max-md:w-full xsm:max-md:h-80"
         ></iframe>
       </div>

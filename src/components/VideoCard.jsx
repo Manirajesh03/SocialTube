@@ -3,7 +3,7 @@ import React from "react";
 const VideoCard = ({ info }) => {
   const { snippet, statistics } = info;
   const { channelTitle, title, thumbnails, publishedAt } = snippet;
-  const { viewCount } = statistics;
+  const viewCount = statistics?.viewCount;
   return (
     <div className="w-[340px] mx-2 my-5 shadow-sm rounded-xl xsm:max-md:w-full">
       <img

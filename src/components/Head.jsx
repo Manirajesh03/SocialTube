@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { isMenuOpen, searchData } from "../utils/actions";
-import { YOUTUBE_SEARCH_API } from "../utils/constants";
+import { isMenuOpen, searchData, searchVideos } from "../utils/actions";
+import { YOUTUBE_SEARCH_API, YOUTUBE_VIDEO_SEARCH } from "../utils/constants";
+import { useNavigate } from "react-router-dom";
 
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -9,6 +10,7 @@ const Head = () => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const cacheSearchedData = useSelector((store) => store.initialSearchData);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const toggleMenuHandler = () => {
     dispatch(isMenuOpen());
@@ -19,12 +21,29 @@ const Head = () => {
     try {
       const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
       const res = await data.json();
+      console.log("🚀 ~ getSearchSuggestions ~ res:", res);
       console.log(res[1]);
       setSuggestions(res[1]);
       dispatch(searchData({ [searchQuery]: res[1] }));
       setShowSuggestions(true);
     } catch (error) {
       console.error("Error fetching search suggestions:", error);
+    }
+  };
+
+  const getSearchVideos = async (searchReq) => {
+    console.log("Inside getSearchVideos");
+    setShowSuggestions(false);
+    try {
+      const data = await fetch(YOUTUBE_VIDEO_SEARCH + searchReq || searchQuery);
+      const res = await data.json();
+      console.log(res);
+      console.log(
+        res.items.map((item) => console.log(item.id.videoId), "videoId")
+      );
+      dispatch(searchVideos(res.items));
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -60,6 +79,7 @@ const Head = () => {
           src={require("../assets/logo.png")}
           alt="youtube-logo"
           className="h-12 mx-5"
+          onClick={() => navigate("/")}
         />
       </div>
       <div className="col-span-10 px-10 xsm:max-md:hidden mt-1">
@@ -71,9 +91,13 @@ const Head = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={() => setShowSuggestions(true)}
-            onBlur={() => setShowSuggestions(false)}
+            // onBlur={() => setShowSuggestions(false)}
           />
-          <button className="border border-gray-300 py-2 px-6 rounded-r-full bg-gray-100">
+          <button
+            type="submit"
+            className="border border-gray-300 py-2 px-6 rounded-r-full bg-gray-100"
+            onClick={() => getSearchVideos(searchQuery)}
+          >
             <img
               src="https://cdn-icons-png.flaticon.com/512/54/54481.png"
               alt="search-icon"
@@ -86,14 +110,21 @@ const Head = () => {
           <div className="fixed bg-white w-[34.5%] shadow-lg rounded-lg p-4">
             <ul>
               {suggestions.map((item, key) => (
-                <li className="py-1 flex items-center cursor-pointer" key={key}>
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/512/54/54481.png"
-                    alt="search-icon"
-                    className="w-4 h-4 mx-2 mr-3"
-                  />
-                  {item}
-                </li>
+                <button
+                  type="=button"
+                  key={key}
+                  className="w-full"
+                  onClick={() => getSearchVideos(item)}
+                >
+                  <li className="py-1 flex items-center cursor-pointer">
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/512/54/54481.png"
+                      alt="search-icon"
+                      className="w-4 h-4 mx-2 mr-3"
+                    />
+                    {item}
+                  </li>
+                </button>
               ))}
             </ul>
           </div>

@@ -1,9 +1,17 @@
 import { createStore } from "redux";
-import { CLOSE_MENU, IS_MENU_OPEN, SEARCH_DATA } from "./actions";
+import {
+  CLOSE_MENU,
+  IS_MENU_OPEN,
+  OPEN_MENU,
+  SEARCH_DATA,
+  SEARCH_VIDEOS,
+  searchVideos,
+} from "./actions";
 
 const initialState = {
   isMenuOpen: true,
   initialSearchData: {},
+  searchVideos: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -18,11 +26,21 @@ const reducer = (state = initialState, action) => {
         ...state,
         isMenuOpen: false,
       };
+    case OPEN_MENU:
+      return {
+        ...state,
+        isMenuOpen: true,
+      };
     case SEARCH_DATA:
       console.log(state, "inside switch");
       return {
         ...state,
         initialSearchData: { ...state.initialSearchData, ...action.payload },
+      };
+    case SEARCH_VIDEOS:
+      return {
+        ...state,
+        searchVideos: action.payload,
       };
     default:
       return state;
