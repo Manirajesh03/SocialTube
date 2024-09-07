@@ -67,22 +67,22 @@ const Head = () => {
   }, [searchQuery]);
 
   return (
-    <div className="grid grid-flow-col px-4 py-2 shadow-md xsm:max-md:justify-between">
-      <div className="flex items-center col-span-1 mx-2 mr-20 xsm:max-md:justify-between">
+    <div className="grid grid-flow-col px-4 py-2 shadow-md xsm:max-md:justify-between xsm:max-md:px-0">
+      <div className="flex items-center col-span-1 mx-2 mr-20 xsm:max-md:justify-between xsm:max-md:mr-0">
         <img
           src="https://cdn.iconscout.com/icon/free/png-256/free-hamburger-menu-icon-download-in-svg-png-gif-file-formats--crispy-user-interface-pack-icons-462145.png?f=webp&w=256"
           alt="menu"
-          className="h-7 cursor-pointer"
+          className="h-7 cursor-pointer xsm:max-md:hidden"
           onClick={toggleMenuHandler}
         />
         <img
           src={require("../assets/logo.png")}
           alt="youtube-logo"
-          className="h-12 mx-5"
+          className="h-12 mx-5 xsm:max-md:max-w-none xsm:max-md:m-0"
           onClick={() => navigate("/")}
         />
       </div>
-      <div className="col-span-10 px-10 xsm:max-md:hidden mt-1">
+      <div className="col-span-10 px-10 mt-1 xsm:max-md:px-0 xsm:max-md:mr-4">
         <div className="flex">
           <input
             type="text"
@@ -107,7 +107,7 @@ const Head = () => {
         </div>
 
         {suggestions.length > 0 && showSuggestions && (
-          <div className="fixed bg-white w-[34.5%] shadow-lg rounded-lg p-4">
+          <div className="fixed bg-white w-[34.5%] shadow-lg rounded-lg p-4 xsm:max-md:w-1/2">
             <ul>
               {suggestions.map((item, key) => (
                 <button
@@ -134,7 +134,7 @@ const Head = () => {
         <img
           src="https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png"
           alt="user-icon"
-          className="h-8"
+          className="h-8 xsm:max-md:hidden"
         />
       </div>
     </div>
