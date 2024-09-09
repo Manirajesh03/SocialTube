@@ -1,11 +1,12 @@
 import React from "react";
+import { numToRoman } from "../utils/helper_fn";
 
 const VideoCard = ({ info }) => {
   const { snippet, statistics } = info;
   const { channelTitle, title, thumbnails, publishedAt } = snippet;
   const viewCount = statistics?.viewCount;
   return (
-    <div className="w-[340px] mx-2 my-5 shadow-sm rounded-xl xsm:max-md:w-full">
+    <div className="w-[340px] mx-2 my-5 rounded-xl xsm:max-md:w-full">
       <img
         src={thumbnails.medium.url}
         alt="thumbnail"
@@ -14,7 +15,7 @@ const VideoCard = ({ info }) => {
       <p className="font-bold text-ellipsis">{title}</p>
       <p className="font-semibold">{channelTitle}</p>
       <div className="flex justify-between">
-        <span>{viewCount} Views</span>
+        <span>{viewCount ? numToRoman(viewCount) + " " + "views" : ""}</span>
         <span>{publishedAt}</span>
       </div>
     </div>

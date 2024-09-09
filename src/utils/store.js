@@ -32,7 +32,6 @@ const reducer = (state = initialState, action) => {
         isMenuOpen: true,
       };
     case SEARCH_DATA:
-      console.log(state, "inside switch");
       return {
         ...state,
         initialSearchData: { ...state.initialSearchData, ...action.payload },

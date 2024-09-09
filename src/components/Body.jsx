@@ -6,12 +6,10 @@ import { closeMenu, openMenu } from "../utils/actions";
 
 const Body = () => {
   const [params] = useSearchParams();
-  console.log("🚀 ~ Body ~ params:", params.get("v"));
   const bodyParams = params.get("v");
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("useEffect calling");
     if (bodyParams) {
       dispatch(closeMenu());
     } else {

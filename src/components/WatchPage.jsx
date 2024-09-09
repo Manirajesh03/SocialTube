@@ -6,9 +6,7 @@ import CommentsContainer from "./CommentsContainer";
 
 const WatchPage = () => {
   const [params] = useSearchParams();
-  console.log("🚀 ~ WatchPage ~ params:", params.get("v"));
   const data = params.get("v");
-  console.log("loading");
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(closeMenu());

@@ -7,13 +7,11 @@ import { useSelector } from "react-redux";
 const VideoContainer = () => {
   const [videos, setVideos] = useState([]);
   const searchVideos = useSelector((state) => state.searchVideos);
-  console.log("🚀 ~ VideoContainer ~ searchVideos:", searchVideos);
 
   const getVideos = async () => {
     if (searchVideos.length === 0) {
       const data = await fetch(YOUTUBE_VIDEOS_API);
       const res = await data.json();
-      console.log("🚀 ~ getVideos ~ res:", res);
       setVideos(res.items);
     } else {
       setVideos(searchVideos);
@@ -33,7 +31,6 @@ const VideoContainer = () => {
           key={id}
           className="xsm:max-md:min-w-full"
         >
-          {console.log("Landed video", video)}
           <VideoCard info={video} />
         </Link>
       ))}

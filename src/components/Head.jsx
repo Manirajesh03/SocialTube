@@ -17,12 +17,9 @@ const Head = () => {
   };
 
   const getSearchSuggestions = async () => {
-    console.log("Calling Search API");
     try {
       const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
       const res = await data.json();
-      console.log("🚀 ~ getSearchSuggestions ~ res:", res);
-      console.log(res[1]);
       setSuggestions(res[1]);
       dispatch(searchData({ [searchQuery]: res[1] }));
       setShowSuggestions(true);
@@ -32,15 +29,10 @@ const Head = () => {
   };
 
   const getSearchVideos = async (searchReq) => {
-    console.log("Inside getSearchVideos");
     setShowSuggestions(false);
     try {
       const data = await fetch(YOUTUBE_VIDEO_SEARCH + searchReq || searchQuery);
       const res = await data.json();
-      console.log(res);
-      console.log(
-        res.items.map((item) => console.log(item.id.videoId), "videoId")
-      );
       dispatch(searchVideos(res.items));
     } catch (error) {
       console.log(error);
@@ -107,7 +99,7 @@ const Head = () => {
         </div>
 
         {suggestions.length > 0 && showSuggestions && (
-          <div className="fixed bg-white w-[34.5%] shadow-lg rounded-lg p-4 xsm:max-md:w-1/2">
+          <div className="absolute bg-white w-[34.5%] shadow-lg rounded-lg p-4 xsm:max-md:w-1/2">
             <ul>
               {suggestions.map((item, key) => (
                 <button
