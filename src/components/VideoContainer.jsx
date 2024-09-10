@@ -29,7 +29,7 @@ const VideoContainer = () => {
             searchVideos.length === 0 ? video.id : video?.id?.videoId
           }`}
           key={id}
-          className="xsm:max-md:min-w-full"
+          className="xsm:max-md:min-w-full w-[33.33%] pr-5 pb-5"
         >
           <VideoCard info={video} />
         </Link>

@@ -59,7 +59,7 @@ const Head = () => {
   }, [searchQuery]);
 
   return (
-    <div className="grid grid-flow-col px-4 py-2 shadow-md xsm:max-md:justify-between xsm:max-md:px-0">
+    <div className="grid grid-flow-col items-center px-4 py-2 shadow-md xsm:max-md:justify-between xsm:max-md:px-0">
       <div className="flex items-center col-span-1 mx-2 mr-20 xsm:max-md:justify-between xsm:max-md:mr-0">
         <img
           src="https://cdn.iconscout.com/icon/free/png-256/free-hamburger-menu-icon-download-in-svg-png-gif-file-formats--crispy-user-interface-pack-icons-462145.png?f=webp&w=256"
