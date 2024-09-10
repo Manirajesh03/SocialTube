@@ -15,7 +15,7 @@ const VideoCard = ({ info }) => {
       <p className="font-bold text-ellipsis">{title}</p>
       <p className="font-semibold">{channelTitle}</p>
       <div className="flex justify-between">
-        // eslint-disable-next-line
+        {/* eslint-disable-next-line */}
         <span>{viewCount ? numToRoman(viewCount) + " " + "views" : ""}</span>
         <span>{publishedAt}</span>
       </div>
